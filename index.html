@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Correa | Antares Group S.A.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0c2340;
+      --antares-red: rgb(148, 54, 52); /* #943634 */
+      --whatsapp: #22a147;
+      --btn-grey: #84888e;
+      --btn-light: #e2e5e9;
+      --tag-bg: #e1effe;
+      --tag-text: #1e429f;
+      --bg: #eef2f6;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+      color: var(--text);
+    }
+    .card {
+      background: var(--card);
+      max-width: 390px;
+      width: 100%;
+      border-radius: 26px;
+      box-shadow: 0 15px 35px rgba(12, 35, 64, 0.14);
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 24px;
+      position: relative;
+    }
+    .header {
+      background-color: var(--navy);
+      height: 130px;
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 16px 18px;
+    }
+    .lang-switch {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.85);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: #ffffff;
+      color: var(--navy);
+    }
+    .avatar-container {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      border: 4px solid #ffffff;
+      margin: -59px auto 0;
+      background: #f6f6f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+    }
+    .avatar-container img,
+    .avatar-container svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .profile-info { padding: 14px 22px 6px; }
+    h1 { margin: 0 0 4px; font-size: 1.55rem; font-weight: 800; color: #000000; }
+    .role { margin: 0; color: var(--muted); font-size: 0.96rem; font-weight: 500; }
+    .company {
+      margin: 5px 0 12px;
+      color: var(--antares-red);
+      font-family: "Baskerville Old Face", "Baskerville", "Libre Baskerville", Georgia, serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.3px;
+    }
+    .bio {
+      font-size: 0.82rem;
+      color: #374151;
+      line-height: 1.42;
+      margin: 0 0 14px;
+      padding: 0 4px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 18px;
+      padding: 0 8px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.74rem;
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .actions { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 10px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.12s, opacity 0.2s;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+    }
+    .btn:active { transform: scale(0.98); opacity: 0.9; }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .btn-primary {
+      background: var(--navy);
+      color: #ffffff;
+      font-size: 0.95rem;
+      padding: 14px;
+    }
+    .btn-whatsapp {
+      background: var(--whatsapp);
+      color: #ffffff;
+      padding: 10px 8px;
+    }
+    .btn-call {
+      background: var(--btn-grey);
+      color: #ffffff;
+      padding: 12px 10px;
+    }
+    .btn-light {
+      background: var(--btn-light);
+      color: #111827;
+      padding: 12px 10px;
+    }
+    .sub-label {
+      font-size: 0.68rem;
+      opacity: 0.95;
+      font-weight: 400;
+      display: block;
+      margin-top: 2px;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .qr-box {
+      display: none;
+      margin: 16px 20px 0;
+      padding: 16px;
+      background: #f8fafc;
+      border-radius: 14px;
+      border: 1px solid #e2e8f0;
+    }
+    .qr-box img { width: 180px; height: 180px; border-radius: 8px; }
+    .qr-caption { font-size: 0.75rem; color: var(--muted); margin: 8px 0 0; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('es', this)">ES</button>
+      <button class="lang-btn" onclick="setLang('it', this)">IT</button>
+      <button class="lang-btn" onclick="setLang('en', this)">EN</button>
+    </div>
+  </div>
+
+  <!-- Busca primero logo.jpg, luego el nombre largo original, y si no está en el servidor muestra el vector -->
+  <div class="avatar-container" id="avatarBox">
+    <img id="logo-img" src="logo.jpg" alt="Antares Group S.A." onerror="cargarLogoAlternativo(this)">
+    <svg id="svg-antares" style="display:none;" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="metal1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#b8b8b8"/>
+          <stop offset="35%" stop-color="#5a5a5a"/>
+          <stop offset="50%" stop-color="#ececec"/>
+          <stop offset="75%" stop-color="#3d3d3d"/>
+          <stop offset="100%" stop-color="#8c8c8c"/>
+        </linearGradient>
+        <linearGradient id="metal2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#e0e0e0"/>
+          <stop offset="45%" stop-color="#4a4a4a"/>
+          <stop offset="80%" stop-color="#9e9e9e"/>
+          <stop offset="100%" stop-color="#2b2b2b"/>
+        </linearGradient>
+        <filter id="bevel" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-opacity="0.35"/>
+        </filter>
+      </defs>
+      <g filter="url(#bevel)">
+        <path d="M 62,12 Q 112,38 192,6 L 112,48 Q 84,35 62,12 Z" fill="url(#metal1)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M 192,6 Q 142,68 136,128 L 122,74 Q 148,42 192,6 Z" fill="url(#metal2)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M 136,128 Q 86,102 8,134 L 88,92 Q 114,105 136,128 Z" fill="url(#metal1)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M 8,134 Q 58,72 62,12 L 76,66 Q 50,98 8,134 Z" fill="url(#metal2)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="profile-info">
+    <h1 id="ui-name">Juan Correa</h1>
+    <p class="role" id="ui-role">Director</p>
+    <p class="company" id="ui-company">Antares Group S.A.</p>
+    <p class="bio" id="ui-bio"></p>
+
+    <div class="tags" id="ui-tags"></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="descargarVCard()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span id="lbl-save">Guardar en Contactos</span>
+    </button>
+
+    <div class="grid-2">
+      <a class="btn btn-whatsapp" id="link-wa-es" href="#" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        <div>WhatsApp ES<span class="sub-label">+34 651 077 555</span></div>
+      </a>
+      <a class="btn btn-whatsapp" id="link-wa-cl" href="#" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        <div>WhatsApp CL<span class="sub-label">+56 9 7589 7064</span></div>
+      </a>
+    </div>
+
+    <div class="grid-2">
+      <a class="btn btn-call" id="link-tel-es" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/>
+        </svg>
+        <span id="lbl-call-es">Llamar ES</span>
+      </a>
+      <a class="btn btn-call" id="link-tel-cl" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/>
+        </svg>
+        <span id="lbl-call-cl">Llamar CL</span>
+      </a>
+    </div>
+
+    <div class="grid-2">
+      <a class="btn btn-light" id="link-mail" href="#">
+        <svg viewBox="0 0 24 24" fill="#1e293b">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <span>Email</span>
+      </a>
+      <a class="btn btn-light" id="link-web" href="#" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span id="lbl-web">Web Antares</span>
+      </a>
+    </div>
+
+    <button class="btn btn-light" onclick="toggleQR()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+        <line x1="12" y1="18" x2="12.01" y2="18"/>
+      </svg>
+      <span id="lbl-qr">Mostrar Código QR</span>
+    </button>
+  </div>
+
+  <div class="qr-box" id="qrBox">
+    <img id="qrImg" src="" alt="QR Code">
+    <p class="qr-caption" id="lbl-qr-Sub">Escanea con la cámara para añadir el contacto</p>
+  </div>
+</div>
+
+<script>
+function cargarLogoAlternativo(img) {
+  if (!img.dataset.intento1) {
+    img.dataset.intento1 = "true";
+    img.src = "ANTARES - LOGO Box (2020_03_28 14_40_57 UTC).jpg";
+  } else if (!img.dataset.intento2) {
+    img.dataset.intento2 = "true";
+    img.src = "ANTARES - LOGO Box (2020_03_28 14_40_57 UTC)_2.jpg";
+  } else {
+    img.style.display = "none";
+    document.getElementById("svg-antares").style.display = "block";
+  }
+}
+
+const DATOS = {
+  nombre: "Juan",
+  apellido: "Correa",
+  empresa: "Antares Group S.A.",
+  telES: "+34651077555",
+  waES: "34651077555",
+  telCL: "+56975897064",
+  waCL: "56975897064",
+  email: "contacto@antaresgroup.cl",
+  web: "https://www.antaresgroup.cl",
+  mercados: "Chile · Perú · Europa"
+};
+
+const TEXTOS = {
+  es: {
+    role: "Director",
+    bio: "Soluciones de ingeniería de procesos, automatización industrial, I+D y optimización con IA para la industria enológica, destilados y bebidas.",
+    tags: ["Ingeniería de Procesos", "Automatización & IA", "HVAC & Refrigeración", "Vino & Bebidas"],
+    save: "Guardar en Contactos",
+    callES: "Llamar ES",
+    callCL: "Llamar CL",
+    web: "Web Antares",
+    qr: "Mostrar Código QR",
+    qrSub: "Escanea para guardar mi contacto directamente"
+  },
+  it: {
+    role: "Direttore / Director",
+    bio: "Soluzioni di ingegneria di processo, automazione industriale, R&S e ottimizzazione AI per l'industria enologica, distillati e bevande.",
+    tags: ["Ingegneria di Processo", "Automazione & AI", "Termotecnica & HVAC", "Enologia & Beverage"],
+    save: "Salva nei Contatti",
+    callES: "Chiama ES",
+    callCL: "Chiama CL",
+    web: "Sito Web",
+    qr: "Mostra Codice QR",
+    qrSub: "Scansiona per salvare il contatto in rubrica"
+  },
+  en: {
+    role: "Director",
+    bio: "Process engineering, industrial automation, R&D and AI-driven optimization for the wine, spirits, and beverage industry.",
+    tags: ["Process Engineering", "Automation & AI", "HVAC & Refrigeration", "Wine & Beverage"],
+    save: "Save to Contacts",
+    callES: "Call ES",
+    callCL: "Call CL",
+    web: "Website",
+    qr: "Show QR Code",
+    qrSub: "Scan to save contact directly to your phone"
+  }
+};
+
+let idiomaActual = 'es';
+
+function inicializar() {
+  document.getElementById("ui-name").textContent = `${DATOS.nombre} ${DATOS.apellido}`;
+  document.getElementById("ui-company").textContent = DATOS.empresa;
+
+  document.getElementById("link-wa-es").href = `https://wa.me/${DATOS.waES}`;
+  document.getElementById("link-wa-cl").href = `https://wa.me/${DATOS.waCL}`;
+  document.getElementById("link-tel-es").href = `tel:${DATOS.telES}`;
+  document.getElementById("link-tel-cl").href = `tel:${DATOS.telCL}`;
+  document.getElementById("link-mail").href = `mailto:${DATOS.email}`;
+  document.getElementById("link-web").href = DATOS.web;
+
+  renderIdioma('es');
+}
+
+function setLang(lang, btn) {
+  idiomaActual = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderIdioma(lang);
+  if (document.getElementById("qrBox").style.display === "block") {
+    actualizarImagenQR();
+  }
+}
+
+function renderIdioma(lang) {
+  const t = TEXTOS[lang];
+  document.getElementById("ui-role").textContent = t.role;
+  document.getElementById("ui-bio").textContent = t.bio;
+  document.getElementById("lbl-save").textContent = t.save;
+  document.getElementById("lbl-call-es").textContent = t.callES;
+  document.getElementById("lbl-call-cl").textContent = t.callCL;
+  document.getElementById("lbl-web").textContent = t.web;
+  document.getElementById("lbl-qr").textContent = t.qr;
+  document.getElementById("lbl-qr-Sub").textContent = t.qrSub;
+
+  const tagsContainer = document.getElementById("ui-tags");
+  tagsContainer.innerHTML = t.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+}
+
+function generarTextoVCard() {
+  const t = TEXTOS[idiomaActual];
+  return [
+    "BEGIN:VCARD",
+    "VERSION:3.0",
+    `N:${DATOS.apellido};${DATOS.nombre};;;`,
+    `FN:${DATOS.nombre} ${DATOS.apellido}`,
+    `ORG:${DATOS.empresa}`,
+    `TITLE:${t.role}`,
+    `TEL;TYPE=CELL,VOICE,PREF:${DATOS.telES}`,
+    `TEL;TYPE=CELL,VOICE:${DATOS.telCL}`,
+    `EMAIL;TYPE=WORK,INTERNET:${DATOS.email}`,
+    `URL:${DATOS.web}`,
+    `NOTE:${t.bio} (${DATOS.mercados})`,
+    "END:VCARD"
+  ].join("\n");
+}
+
+function descargarVCard() {
+  const vcard = generarTextoVCard();
+  const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `Juan_Correa_Antares_Group.vcf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function actualizarImagenQR() {
+  const img = document.getElementById("qrImg");
+  const vcardData = encodeURIComponent(generarTextoVCard());
+  img.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=10&data=${vcardData}`;
+}
+
+function toggleQR() {
+  const box = document.getElementById("qrBox");
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    actualizarImagenQR();
+    box.style.display = "block";
+  }
+}
+
+inicializar();
+</script>
+
+</body>
+</html>
