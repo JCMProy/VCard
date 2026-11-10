@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juan Correa | Antares Group S.A.</title>
+  <!-- Respaldo tipográfico para dispositivos móviles que no incluyen Baskerville Old Face de serie -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -180,12 +181,29 @@
       display: none;
       margin: 16px 20px 0;
       padding: 16px;
-      background: #f8fafc;
+      background: #ffffff;
       border-radius: 14px;
       border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(12, 35, 64, 0.06);
+      animation: fadeIn 0.25s ease-in-out;
     }
-    .qr-box img { width: 180px; height: 180px; border-radius: 8px; }
-    .qr-caption { font-size: 0.75rem; color: var(--muted); margin: 8px 0 0; }
+    .qr-box.visible {
+      display: block;
+    }
+    .qr-box img {
+      width: 220px;
+      height: 220px;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+    }
+    .qr-caption { font-size: 0.75rem; color: var(--muted); margin: 10px 0 0; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -199,33 +217,121 @@
     </div>
   </div>
 
-  <!-- Busca primero logo.jpg, luego el nombre largo original, y si no está en el servidor muestra el vector -->
+  <!-- Logotipo vectorial de Antares Group S.A. incrustado directamente -->
   <div class="avatar-container" id="avatarBox">
-    <img id="logo-img" src="logo.jpg" alt="Antares Group S.A." onerror="cargarLogoAlternativo(this)">
-    <svg id="svg-antares" style="display:none;" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1200"
+      height="780"
+      viewBox="0 0 1200 780"
+      fill="none"
+    >
+      <title>Logotipo Antares con acabado metálico</title>
+      <desc>
+        Reconstrucción vectorial de cuatro piezas curvas,
+        con fondo transparente, degradados grises y reflejos.
+      </desc>
+
       <defs>
-        <linearGradient id="metal1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#b8b8b8"/>
-          <stop offset="35%" stop-color="#5a5a5a"/>
-          <stop offset="50%" stop-color="#ececec"/>
-          <stop offset="75%" stop-color="#3d3d3d"/>
-          <stop offset="100%" stop-color="#8c8c8c"/>
+        <linearGradient id="metal-superior" gradientUnits="userSpaceOnUse" x1="750" y1="52" x2="779" y2="230">
+          <stop offset="0" stop-color="#292929"/>
+          <stop offset=".13" stop-color="#555555"/>
+          <stop offset=".31" stop-color="#999999"/>
+          <stop offset=".43" stop-color="#a9a9a9"/>
+          <stop offset=".57" stop-color="#7c7c7c"/>
+          <stop offset=".78" stop-color="#555555"/>
+          <stop offset=".93" stop-color="#303030"/>
+          <stop offset="1" stop-color="#171717"/>
         </linearGradient>
-        <linearGradient id="metal2" x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#e0e0e0"/>
-          <stop offset="45%" stop-color="#4a4a4a"/>
-          <stop offset="80%" stop-color="#9e9e9e"/>
-          <stop offset="100%" stop-color="#2b2b2b"/>
+
+        <linearGradient id="metal-izquierda" gradientUnits="userSpaceOnUse" x1="248" y1="329" x2="421" y2="360">
+          <stop offset="0" stop-color="#202020"/>
+          <stop offset=".17" stop-color="#474747"/>
+          <stop offset=".44" stop-color="#797979"/>
+          <stop offset=".66" stop-color="#999999"/>
+          <stop offset=".81" stop-color="#c4c4c4"/>
+          <stop offset=".90" stop-color="#ababab"/>
+          <stop offset="1" stop-color="#414141"/>
         </linearGradient>
-        <filter id="bevel" x="-10%" y="-10%" width="120%" height="120%">
-          <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-opacity="0.35"/>
+
+        <linearGradient id="metal-derecha" gradientUnits="userSpaceOnUse" x1="777" y1="368" x2="933" y2="450">
+          <stop offset="0" stop-color="#252525"/>
+          <stop offset=".16" stop-color="#4e4e4e"/>
+          <stop offset=".43" stop-color="#777777"/>
+          <stop offset=".64" stop-color="#969696"/>
+          <stop offset=".81" stop-color="#aeaeae"/>
+          <stop offset="1" stop-color="#393939"/>
+        </linearGradient>
+
+        <linearGradient id="metal-inferior" gradientUnits="userSpaceOnUse" x1="452" y1="559" x2="425" y2="704">
+          <stop offset="0" stop-color="#3a3a3a"/>
+          <stop offset=".17" stop-color="#858585"/>
+          <stop offset=".31" stop-color="#bcbcbc"/>
+          <stop offset=".45" stop-color="#8b8b8b"/>
+          <stop offset=".67" stop-color="#676767"/>
+          <stop offset=".86" stop-color="#414141"/>
+          <stop offset="1" stop-color="#191919"/>
+        </linearGradient>
+
+        <radialGradient id="luz-superior" gradientUnits="userSpaceOnUse" cx="399" cy="64" r="135" gradientTransform="translate(399 64) scale(1 .48) translate(-399 -64)">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".68"/>
+          <stop offset=".42" stop-color="#eeeeee" stop-opacity=".23"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+
+        <path id="pieza-superior" d="M 362,44 L 386,26 C 489,79 581,123 708,120 C 855,119 1031,62 1180,11 L 1190,29 C 1064,111 870,184 674,239 C 554,193 455,139 395,66 C 386,54 379,57 377,71 Z" />
+        <path id="pieza-izquierda" d="M 362,44 L 386,26 C 378,96 392,155 411,217 C 434,285 440,343 431,394 C 350,475 222,594 66,726 C 56,734 58,738 71,732 L 29,763 L 20,772 L 11,755 C 139,613 262,467 318,350 C 354,266 366,156 362,44 Z" />
+        <path id="pieza-derecha" d="M 1180,11 L 1191,29 C 1075,165 969,292 900,431 C 850,532 835,635 840,741 L 816,755 L 800,731 C 771,667 758,586 765,476 L 770,389 C 858,284 1008,144 1135,53 C 1144,46 1138,43 1128,48 Z" />
+        <path id="pieza-inferior" d="M 11,755 C 175,663 354,586 526,544 C 658,587 749,647 807,718 C 815,729 823,730 829,718 L 840,741 L 816,755 C 697,688 605,659 503,660 C 361,658 187,717 20,772 Z" />
+
+        <clipPath id="recorte-superior"><use href="#pieza-superior"/></clipPath>
+        <clipPath id="recorte-izquierda"><use href="#pieza-izquierda"/></clipPath>
+        <clipPath id="recorte-derecha"><use href="#pieza-derecha"/></clipPath>
+        <clipPath id="recorte-inferior"><use href="#pieza-inferior"/></clipPath>
+
+        <filter id="reflejo-suave" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+          <feGaussianBlur stdDeviation="5"/>
+        </filter>
+        <filter id="borde-suave" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+          <feGaussianBlur stdDeviation="1.4"/>
         </filter>
       </defs>
-      <g filter="url(#bevel)">
-        <path d="M 62,12 Q 112,38 192,6 L 112,48 Q 84,35 62,12 Z" fill="url(#metal1)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
-        <path d="M 192,6 Q 142,68 136,128 L 122,74 Q 148,42 192,6 Z" fill="url(#metal2)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
-        <path d="M 136,128 Q 86,102 8,134 L 88,92 Q 114,105 136,128 Z" fill="url(#metal1)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
-        <path d="M 8,134 Q 58,72 62,12 L 76,66 Q 50,98 8,134 Z" fill="url(#metal2)" stroke="#333" stroke-width="1" stroke-linejoin="round"/>
+
+      <g stroke="#363636" stroke-width="1.4" stroke-linejoin="round">
+        <use href="#pieza-superior" fill="url(#metal-superior)"/>
+        <use href="#pieza-izquierda" fill="url(#metal-izquierda)"/>
+        <use href="#pieza-derecha" fill="url(#metal-derecha)"/>
+        <use href="#pieza-inferior" fill="url(#metal-inferior)"/>
+      </g>
+
+      <g clip-path="url(#recorte-superior)">
+        <path d="M 391,49 C 561,171 734,201 1149,39" stroke="#e2e2e2" stroke-width="14" opacity=".29" filter="url(#reflejo-suave)" />
+        <path d="M 399,71 C 472,145 566,196 675,228 C 859,177 1042,106 1134,51" stroke="#d4d4d4" stroke-width="3" opacity=".43" filter="url(#borde-suave)" />
+        <rect x="355" y="25" width="270" height="150" fill="url(#luz-superior)" />
+        <path d="M 403,77 C 469,155 567,207 674,237" stroke="#111111" stroke-width="6" opacity=".62" filter="url(#borde-suave)" />
+      </g>
+
+      <g clip-path="url(#recorte-izquierda)">
+        <path d="M 389,72 C 403,154 431,249 420,378 C 325,478 201,599 66,722" stroke="#eeeeee" stroke-width="13" opacity=".63" filter="url(#reflejo-suave)" />
+        <path d="M 371,69 C 379,211 350,325 294,418 C 224,533 124,650 33,751" stroke="#171717" stroke-width="9" opacity=".65" filter="url(#reflejo-suave)" />
+        <path d="M 398,89 C 419,193 437,297 425,389 C 336,481 208,601 67,726" stroke="#ededed" stroke-width="2.5" opacity=".48" filter="url(#borde-suave)" />
+        <path d="M 24,753 L 62,727" stroke="#eeeeee" stroke-width="4" opacity=".6" filter="url(#borde-suave)" />
+      </g>
+
+      <g clip-path="url(#recorte-derecha)">
+        <path d="M 1158,43 C 1029,170 906,323 846,484 C 819,558 811,647 820,713" stroke="#c9c9c9" stroke-width="15" opacity=".44" filter="url(#reflejo-suave)" />
+        <path d="M 1136,54 C 1009,150 868,286 779,394 C 766,521 775,638 809,715" stroke="#181818" stroke-width="9" opacity=".7" filter="url(#reflejo-suave)" />
+        <path d="M 1134,49 C 1001,150 856,291 776,391" stroke="#d6d6d6" stroke-width="2.5" opacity=".52" filter="url(#borde-suave)" />
+        <path d="M 827,719 C 816,639 825,548 854,473" stroke="#ededed" stroke-width="3" opacity=".55" filter="url(#borde-suave)" />
+        <path d="M 1161,28 L 1180,21" stroke="#ffffff" stroke-width="7" opacity=".65" filter="url(#reflejo-suave)" />
+      </g>
+
+      <g clip-path="url(#recorte-inferior)">
+        <path d="M 72,730 C 249,655 399,597 525,560 C 645,600 739,658 802,721" stroke="#e4e4e4" stroke-width="13" opacity=".48" filter="url(#reflejo-suave)" />
+        <path d="M 531,557 C 653,600 741,661 803,721" stroke="#f1f1f1" stroke-width="9" opacity=".58" filter="url(#reflejo-suave)" />
+        <path d="M 57,747 C 237,690 385,646 503,650 C 619,649 711,687 807,740" stroke="#151515" stroke-width="10" opacity=".65" filter="url(#reflejo-suave)" />
+        <path d="M 69,732 C 247,659 400,603 525,566" stroke="#c9c9c9" stroke-width="2.5" opacity=".46" filter="url(#borde-suave)" />
+        <path d="M 29,756 C 205,702 379,650 503,656 C 619,653 720,694 812,745" stroke="#aaaaaa" stroke-width="2" opacity=".38" filter="url(#borde-suave)" />
       </g>
     </svg>
   </div>
@@ -240,6 +346,7 @@
   </div>
 
   <div class="actions">
+    <!-- Guardar en Contactos -->
     <button class="btn btn-primary" onclick="descargarVCard()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -249,6 +356,7 @@
       <span id="lbl-save">Guardar en Contactos</span>
     </button>
 
+    <!-- WhatsApp ES & CL -->
     <div class="grid-2">
       <a class="btn btn-whatsapp" id="link-wa-es" href="#" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -264,6 +372,7 @@
       </a>
     </div>
 
+    <!-- Llamar ES & CL -->
     <div class="grid-2">
       <a class="btn btn-call" id="link-tel-es" href="#">
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -279,6 +388,7 @@
       </a>
     </div>
 
+    <!-- Email & Web Antares -->
     <div class="grid-2">
       <a class="btn btn-light" id="link-mail" href="#">
         <svg viewBox="0 0 24 24" fill="#1e293b">
@@ -296,6 +406,7 @@
       </a>
     </div>
 
+    <!-- Mostrar Código QR -->
     <button class="btn btn-light" onclick="toggleQR()">
       <svg viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
@@ -305,26 +416,14 @@
     </button>
   </div>
 
+  <!-- Contenedor del Código QR -->
   <div class="qr-box" id="qrBox">
-    <img id="qrImg" src="" alt="QR Code">
-    <p class="qr-caption" id="lbl-qr-Sub">Escanea con la cámara para añadir el contacto</p>
+    <img id="qrImg" src="Code_Generated_Image.png" alt="Código QR de Contacto" onerror="cargarQRRespaldo()">
+    <p class="qr-caption" id="lbl-qr-Sub">Escanea para guardar mi contacto directamente</p>
   </div>
 </div>
 
 <script>
-function cargarLogoAlternativo(img) {
-  if (!img.dataset.intento1) {
-    img.dataset.intento1 = "true";
-    img.src = "ANTARES - LOGO Box (2020_03_28 14_40_57 UTC).jpg";
-  } else if (!img.dataset.intento2) {
-    img.dataset.intento2 = "true";
-    img.src = "ANTARES - LOGO Box (2020_03_28 14_40_57 UTC)_2.jpg";
-  } else {
-    img.style.display = "none";
-    document.getElementById("svg-antares").style.display = "block";
-  }
-}
-
 const DATOS = {
   nombre: "Juan",
   apellido: "Correa",
@@ -333,7 +432,7 @@ const DATOS = {
   waES: "34651077555",
   telCL: "+56975897064",
   waCL: "56975897064",
-  email: "contacto@antaresgroup.cl",
+  email: "juan@antaresgroup.cl",
   web: "https://www.antaresgroup.cl",
   mercados: "Chile · Perú · Europa"
 };
@@ -342,39 +441,43 @@ const TEXTOS = {
   es: {
     role: "Director",
     bio: "Soluciones de ingeniería de procesos, automatización industrial, I+D y optimización con IA para la industria enológica, destilados y bebidas.",
-    tags: ["Ingeniería de Procesos", "Automatización & IA", "HVAC & Refrigeración", "Vino & Bebidas"],
+    tags: ["Ingeniería de Procesos", "Automatización & IA", "Tecnología", "Vino & Bebidas"],
     save: "Guardar en Contactos",
     callES: "Llamar ES",
     callCL: "Llamar CL",
     web: "Web Antares",
     qr: "Mostrar Código QR",
+    qrHide: "Ocultar Código QR",
     qrSub: "Escanea para guardar mi contacto directamente"
   },
   it: {
     role: "Direttore / Director",
     bio: "Soluzioni di ingegneria di processo, automazione industriale, R&S e ottimizzazione AI per l'industria enologica, distillati e bevande.",
-    tags: ["Ingegneria di Processo", "Automazione & AI", "Termotecnica & HVAC", "Enologia & Beverage"],
+    tags: ["Ingegneria di Processo", "Automazione & AI", "Tecnologia", "Enologia & Beverage"],
     save: "Salva nei Contatti",
     callES: "Chiama ES",
     callCL: "Chiama CL",
     web: "Sito Web",
     qr: "Mostra Codice QR",
+    qrHide: "Nascondi Codice QR",
     qrSub: "Scansiona per salvare il contatto in rubrica"
   },
   en: {
     role: "Director",
     bio: "Process engineering, industrial automation, R&D and AI-driven optimization for the wine, spirits, and beverage industry.",
-    tags: ["Process Engineering", "Automation & AI", "HVAC & Refrigeration", "Wine & Beverage"],
+    tags: ["Process Engineering", "Automation & AI", "Technology", "Wine & Beverage"],
     save: "Save to Contacts",
     callES: "Call ES",
     callCL: "Call CL",
     web: "Website",
     qr: "Show QR Code",
+    qrHide: "Hide QR Code",
     qrSub: "Scan to save contact directly to your phone"
   }
 };
 
 let idiomaActual = 'es';
+let usandoRespaldoQR = false;
 
 function inicializar() {
   document.getElementById("ui-name").textContent = `${DATOS.nombre} ${DATOS.apellido}`;
@@ -395,20 +498,21 @@ function setLang(lang, btn) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderIdioma(lang);
-  if (document.getElementById("qrBox").style.display === "block") {
-    actualizarImagenQR();
+  if (usandoRespaldoQR && document.getElementById("qrBox").classList.contains("visible")) {
+    cargarQRRespaldo();
   }
 }
 
 function renderIdioma(lang) {
   const t = TEXTOS[lang];
+  const qrVisible = document.getElementById("qrBox").classList.contains("visible");
   document.getElementById("ui-role").textContent = t.role;
   document.getElementById("ui-bio").textContent = t.bio;
   document.getElementById("lbl-save").textContent = t.save;
   document.getElementById("lbl-call-es").textContent = t.callES;
   document.getElementById("lbl-call-cl").textContent = t.callCL;
   document.getElementById("lbl-web").textContent = t.web;
-  document.getElementById("lbl-qr").textContent = t.qr;
+  document.getElementById("lbl-qr").textContent = qrVisible ? t.qrHide : t.qr;
   document.getElementById("lbl-qr-Sub").textContent = t.qrSub;
 
   const tagsContainer = document.getElementById("ui-tags");
@@ -445,19 +549,29 @@ function descargarVCard() {
   document.body.removeChild(a);
 }
 
-function actualizarImagenQR() {
+// Respaldo automático en color azul marino (#0c2340) si Code_Generated_Image.png no se encuentra en la misma carpeta
+function cargarQRRespaldo() {
+  usandoRespaldoQR = true;
   const img = document.getElementById("qrImg");
+  img.onerror = null;
   const vcardData = encodeURIComponent(generarTextoVCard());
-  img.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=10&data=${vcardData}`;
+  img.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&color=0c2340&data=${vcardData}`;
 }
 
 function toggleQR() {
   const box = document.getElementById("qrBox");
-  if (box.style.display === "block") {
-    box.style.display = "none";
+  const lbl = document.getElementById("lbl-qr");
+  const t = TEXTOS[idiomaActual];
+
+  if (box.classList.contains("visible")) {
+    box.classList.remove("visible");
+    lbl.textContent = t.qr;
   } else {
-    actualizarImagenQR();
-    box.style.display = "block";
+    box.classList.add("visible");
+    lbl.textContent = t.qrHide;
+    setTimeout(() => {
+      box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 50);
   }
 }
 
